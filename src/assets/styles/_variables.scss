@@ -1,0 +1,49 @@
+// ----------------
+// Breakpoints values
+// ----------------
+$breakpoints: (
+        tn: 480px,
+        sm: 576px,
+        md: 768px,
+        lg: 1024px,
+        xl: 1330px,
+) !default;
+
+$tiny: map-get($breakpoints, tn) !default;
+$small: map-get($breakpoints, sm) !default;
+$medium: map-get($breakpoints, md) !default;
+$large: map-get($breakpoints, lg) !default;
+$extra-large: map-get($breakpoints, xl) !default;
+
+// ----------
+// Border radius
+// ----------
+$radius-none: 0;
+$radius-small: 0.5rem;
+$radius-medium: 1rem;
+$radius-large: 2rem;
+$radius-circle: 50%;
+
+// ----------
+// Color zone
+// ----------
+$color-white: #FEFEFE;
+
+$color-primary: #EA503B;
+$color-secondary: #1A252E;
+
+$color-font-primary: $color-white;
+$color-font-highlight: $color-primary;
+
+$color-light: #F2F2F2;
+$color-dark: #333333;
+$color-darken: #090C0F;
+
+$color-background-primary: #0D1218;
+$color-background-secondary: #161616;
+
+// ----------
+// Shadow zone
+// ----------
+$shadow-bottom: 0 5px 5px 0 #e5e2df;
+$shadow-all: 0 0 10px 0 #e5e2df;
