@@ -1,30 +1,46 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+  <Menu />
+  <article class="wrapper" :class="menuClass">
+    <router-view/>
+  </article>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import { mapState } from 'vuex'
+
+import Menu from './components/Menu.vue'
+
+export default {
+  components: {
+    Menu,
+  },
+  computed: {
+    ...mapState(['displayMenu']),
+    menuClass() {
+      return this.displayMenu ? 'menu-open' : ''
+    },
+  },
 }
+</script>
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<style lang="scss">
+.wrapper {
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: $color-background-primary;
+  position: absolute;
+  z-index: 0;
+  border-radius: 0;
+  transition: height .3s ease-in-out, width .3s ease-in-out, border-radius .3s ease-in-out, transform .3s ease-in-out, top .3s ease-in-out, right .3s ease-in-out, box-shadow .3s ease-in-out;
+  &.menu-open {
+    right: calc(12em + 10%);
+    top: 50%;
+    transform: translate(0, -50%) skew(0, -5deg) scale(0.8);
+    border-radius: 0.5em;
+    box-shadow: 0 1em 2em 0 $color-background-primary;
   }
 }
 </style>
