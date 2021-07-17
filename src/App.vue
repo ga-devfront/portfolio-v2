@@ -1,7 +1,14 @@
 <template>
   <Menu />
   <article class="wrapper" :class="menuClass">
-    <router-view/>
+    <router-view v-slot="{ Component, route }">
+      <transition :name="route.meta.transition || transitionClass" mode="out-in">
+          <component
+            :is="Component"
+            :key="route.meta.usePathKey ? route.path : undefined"
+          />
+      </transition>
+    </router-view>
   </article>
 </template>
 
@@ -19,6 +26,9 @@ export default {
     menuClass() {
       return this.displayMenu ? 'menu-open' : ''
     },
+    transitionClass() {
+      return this.displayMenu ? 'fade' : 'scroll'
+    },
   },
 }
 </script>
@@ -31,16 +41,15 @@ export default {
   height: 100%;
   overflow: hidden;
   background: $color-background-primary;
-  position: absolute;
+  position: relative;
   z-index: 0;
   border-radius: 0;
-  transition: height .3s ease-in-out, width .3s ease-in-out, border-radius .3s ease-in-out, transform .3s ease-in-out, top .3s ease-in-out, right .3s ease-in-out, box-shadow .3s ease-in-out;
+  transition: border-radius .3s ease-in-out, transform .3s ease-in-out, top .3s ease-in-out, right .3s ease-in-out;
   &.menu-open {
     right: calc(12em + 10%);
     top: 50%;
     transform: translate(0, -50%) skew(0, -5deg) scale(0.8);
-    border-radius: 0.5em;
-    box-shadow: 0 1em 2em 0 $color-background-primary;
+    border-radius: $radius-large;
   }
 }
 </style>

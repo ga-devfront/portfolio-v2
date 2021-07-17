@@ -1,0 +1,22 @@
+.rotation-enter-active, .rotation-leave-active {
+  transition: transform .1s;
+}
+.rotation-enter {
+  transform: rotate(180deg);
+}
+
+.rotation-leave-to {
+  transform: rotate(-180deg);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s ease-out;
+}
+
+.fade-enter-from {
+  opacity: 0;
+}
+
+.fade-leave-to {
+  opacity: 0;
+}
