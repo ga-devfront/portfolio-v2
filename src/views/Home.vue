@@ -23,32 +23,33 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-h1 {
-  position: relative;
-  @include respond-to('medium') {
-    font-size: 0.9rem;
-  }
-  display: flex;
-  flex-direction: column;
-  .pre-title {
-    font-weight: 400;
-    color: darken($color-light, 15%);
-  }
-  .title {
-    font-size: 5em;
-  }
-  .sub-title {
-    color: $color-font-highlight;
-  }
-  .background {
-    position: absolute;
-    left: 5%;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 15em;
-    opacity: 0.2;
-    z-index: -1;
+  h1 {
+    position: relative;
+    @include respond-to('medium') {
+      font-size: 0.9rem;
+    }
+    display: flex;
+    flex-direction: column;
+    .pre-title {
+      font-weight: 400;
+      color: darken($color-light, 15%);
+    }
+    .title {
+      font-size: 5em;
+    }
+    .sub-title {
+      color: $color-font-highlight;
+    }
+    .background {
+      color: $color-dark;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 15em;
+      opacity: 0.5;
+      z-index: -1;
+    }
   }
 }
 </style>

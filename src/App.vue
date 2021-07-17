@@ -1,9 +1,14 @@
 <template>
   <Menu />
   <article class="wrapper" :class="menuClass">
-    <transition :name="transitionClass" mode="out-in">
-      <router-view :key="$route.name"></router-view>
-    </transition>
+    <router-view v-slot="{ Component, route }">
+      <transition :name="route.meta.transition || transitionClass" mode="out-in">
+          <component
+            :is="Component"
+            :key="route.meta.usePathKey ? route.path : undefined"
+          />
+      </transition>
+    </router-view>
   </article>
 </template>
 
@@ -36,7 +41,7 @@ export default {
   height: 100%;
   overflow: hidden;
   background: $color-background-primary;
-  position: absolute;
+  position: relative;
   z-index: 0;
   border-radius: 0;
   transition: border-radius .3s ease-in-out, transform .3s ease-in-out, top .3s ease-in-out, right .3s ease-in-out;

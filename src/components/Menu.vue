@@ -19,7 +19,7 @@
   </div>
   <div class="menu" :class="{ open: displayMenu }">
     <ul>
-      <li v-for="item in menuList" :key="item.name" @mouseover="changeRoute(item.name)">
+      <li v-for="item in menuList" :key="item.name" @mouseover="changeRoute(item.name)" @click="pickMenu(item.name)">
         {{ item.label }}
       </li>
     </ul>
@@ -65,6 +65,10 @@ export default {
     changeRoute(routeName) {
       this.$router.push({ name: routeName })
     },
+    pickMenu(routeName) {
+      this.changeRoute(routeName)
+      this.changeDisplayMenu(false)
+    },
   },
 }
 </script>
@@ -96,19 +100,20 @@ export default {
       transform: translate(-2em, -50%);
     }
     ul {
+      @include respond-to('medium-up') {
+        font-size: 2.8rem;
+      }
+      font-size: 1.6rem;
       list-style: none;
       text-align: right;
       display: flex;
       flex-direction: column;
-      gap: 2em;
+      gap: 0.8em;
       li {
-        @include respond-to('medium-up') {
-          font-size: 2.8rem;
-        }
         padding: 0.8rem 0;
         font-weight: 600;
         cursor: pointer;
-        font-size: 1.6rem;
+
         font-family: "Poppins";
         transition: color .2s ease-out, padding .3s ease-out;
         &:hover {
