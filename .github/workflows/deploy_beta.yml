@@ -1,10 +1,8 @@
-name: CI
+name: Deploy beta
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [ development ]
 
 jobs:
   build:
@@ -29,5 +27,5 @@ jobs:
           SOURCE: "dist/"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: ${{ secrets.REMOTE_TARGET }}
+          TARGET: ${{ secrets.REMOTE_TARGET_BETA }}
           EXCLUDE: "/dist/, /node_modules/"
